@@ -19,14 +19,16 @@ namespace MyMovieSearch
          * @return string
          */
         [FunctionName("SearchMovieAPI")]
-        public static async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req, string searchType, string searchString, ILogger log)
+        //public static async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req, string searchType, string searchString, ILogger log)
+        public static async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req, string searchType, string searchString, string search, ILogger log)
         {
             log.LogInformation($"C# HTTP trigger function processed the search request for: {searchString}");
 
             /**
              * Build search string
              */
-            string apiKey = TMDB_KEY; // TMDB API KEY, ignore error it is updated by GitHub Actions on deploy, from stored secret
+            // string apiKey = TMDB_KEY; // TMDB API KEY, ignore error it is updated by GitHub Actions on deploy, from stored secret
+            string apiKey = search;
             string searchQuery = $"https://api.themoviedb.org/3/{searchType}/{searchString}?api_key={apiKey}&language=en-US&external_source=imdb_id";
 
             /**
