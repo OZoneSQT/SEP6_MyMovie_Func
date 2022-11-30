@@ -26,7 +26,7 @@ namespace MyMovieSearch
             /**
              * Build search string
              */
-            string apiKey = "39abd00d121017de07805ce95e3a7ec0"; // TMDB
+            string apiKey = TMDB_KEY; // TMDB
             string searchQuery = $"https://api.themoviedb.org/3/{searchType}/{searchString}?api_key={apiKey}&language=en-US&external_source=imdb_id";
 
             /**
