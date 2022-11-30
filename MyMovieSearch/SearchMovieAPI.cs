@@ -40,20 +40,21 @@ namespace MyMovieSearch
              * Handel response from  external movie database api
              */
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-            dynamic data = JsonConvert.DeserializeObject(requestBody);
-            result = result ?? data?.result;
+            //dynamic data = JsonConvert.DeserializeObject(requestBody);
+            //result = result ?? data?.result;
 
             /**
              * Validate result
              */
-            string responseMessage = string.IsNullOrEmpty(result)
-                ? "Bad search request."
-                : result;
+            //string responseMessage = string.IsNullOrEmpty(result)
+            //    ? "Bad search request."
+            //    : result;
 
             /**
              * Return search result
              */
-            return new OkObjectResult(responseMessage);
+            //return new OkObjectResult(responseMessage);
+            return new OkObjectResult(requestBody);
         }
     }
 }
