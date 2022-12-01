@@ -6,7 +6,7 @@ name: Build and deploy dotnet core app to Azure Function App - MyMovieSearch
 on:
   push:
     branches:
-      - search_main
+      - search_main_DELETE_THIS
   workflow_dispatch:
 
 env:
