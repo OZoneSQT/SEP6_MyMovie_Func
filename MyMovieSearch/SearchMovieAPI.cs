@@ -21,8 +21,7 @@ namespace MyMovieSearch
          * @return string
          */
         [FunctionName("SearchMovieAPI")]
-        //public static async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req, string searchType, string searchString, ILogger log)
-        public static async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req, string searchType, string searchString, string search, ILogger log)
+        public static async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req, string searchType, string searchString, ILogger log)
         {
             log.LogInformation($"C# HTTP trigger function processed the search request for: {searchString}");
 
@@ -47,9 +46,9 @@ namespace MyMovieSearch
             /**
              * Build search string
              */
-            // string apiKey = TMDB_KEY; // TMDB API KEY, ignore error it is updated by GitHub Actions on deploy, from stored secret
-            string apiKey = search;
-            string searchQuery = $"https://api.themoviedb.org/3/{searchType}/{searchString}?api_key={apiKey}&language=en-US&external_source=imdb_id";
+            //string apiKey = TMDB_KEY; // TMDB API KEY, ignore error it is updated by GitHub Actions on deploy, from stored secret
+            string searchQuery = $"https://api.themoviedb.org/3/{searchType}/{searchString}?api_key=TMDB_KEY&language=en-US&external_source=imdb_id";
+            //string searchQuery = $"https://api.themoviedb.org/3/{searchType}/{searchString}?api_key={apiKey}&language=en-US&external_source=imdb_id";
 
             /**
              * Send search query to external movie database api
@@ -57,32 +56,17 @@ namespace MyMovieSearch
             string result = req.Query[searchQuery];
 
 
-            /**
-             * ADD Method for handeling responsecode
-             * https://learn.microsoft.com/en-us/iis/configuration/system.webServer/security/requestFiltering/requestLimits/
-             * https://www.themoviedb.org/documentation/api/status-codes
-             */
-
-
             /*
              * Handel response from  external movie database api
              */
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-            //dynamic data = JsonConvert.DeserializeObject(requestBody);
-            //result = result ?? data?.result;
 
-            /**
-             * Validate result
-             */
-            //string responseMessage = string.IsNullOrEmpty(result)
-            //    ? "Bad search request."
-            //    : result;
 
             /**
              * Return search result
              */
-            //return new OkObjectResult(responseMessage);
             return new OkObjectResult(requestBody);
+
         }
     }
 }
