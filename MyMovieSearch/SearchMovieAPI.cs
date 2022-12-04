@@ -46,7 +46,7 @@ namespace MyMovieSearch
             /**
              * Build search string
              */
-            string apiKey = TMDB_KEY; // TMDB API KEY, ignore error it is updated by GitHub Actions on deploy, from stored secret
+            string apiKey = "TMDB_KEY"; // TMDB API KEY, ignore error it is updated by GitHub Actions on deploy, from stored secret
             string searchQuery = $"https://api.themoviedb.org/3/{searchType}/{searchString}?api_key={apiKey}&language=en-US&external_source=imdb_id";
 
             /**
