@@ -16,7 +16,7 @@ namespace Company.Function
             string userName, string listName, int itemId, string comment)
         {
 
-            string queryString = $"INSERT INTO dbo.userdata(userName, listName, itemId, comment) VALUES({userName},{listName},{itemId},{comment});";
+            string queryString = $"INSERT INTO [dbo].[userdata](userName, listName, itemId, comment) VALUES({userName},{listName},{itemId},{comment});";
 
             using (SqlConnection connection = new SqlConnection("ConnectionString"))
             {
