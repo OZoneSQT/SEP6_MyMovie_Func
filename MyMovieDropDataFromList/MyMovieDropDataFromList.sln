@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33110.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMovieDropDataFromList", "MyMovieDropDataFromList.csproj", "{23ECA8F1-389E-4B7C-9360-1C325901316D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{23ECA8F1-389E-4B7C-9360-1C325901316D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23ECA8F1-389E-4B7C-9360-1C325901316D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23ECA8F1-389E-4B7C-9360-1C325901316D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23ECA8F1-389E-4B7C-9360-1C325901316D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D452E9AA-9938-43EB-8A17-94F41BFFF09F}
+	EndGlobalSection
+EndGlobal
