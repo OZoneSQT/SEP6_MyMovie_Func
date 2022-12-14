@@ -24,7 +24,7 @@ namespace Company.Function
                 command.Connection.Open();
                 command.ExecuteNonQuery();
             }
-            return new OkObjectResult("");
+            return new OkObjectResult("200");
         }
         
     }
