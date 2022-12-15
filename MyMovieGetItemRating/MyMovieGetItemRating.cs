@@ -1,38 +1,41 @@
 using System;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
-using Microsoft.Extensions.Logging;
+using Microsoft.Data.SqlClient;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Company.Function
 {
     public static class MyMovieGetItemRating
     {
-        // Visit https://aka.ms/sqlbindingsoutput to learn how to use this output binding
         [FunctionName("MyMovieGetItemRating")]
-         public static CreatedResult Run(
-            [HttpTrigger(AuthorizationLevel.Function, "get", Route = "addtodoitem")] HttpRequest req, string category, int n, out ToDoItem output)
+        public static IActionResult Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] int n)
         {
+            string queryString = $"SELECT TOP {n} FROM [dbo].[userdata].itemId;";
+            var message = String.Empty;
 
-            // serilise return from db
-
-            output = new ToDoItem
+            using (SqlConnection connection = new SqlConnection("ConnectionString"))
             {
-                Id = "1",
-                Priority = 1,
-                Description = "Hello World"
-            };
+                SqlCommand command = new SqlCommand(queryString, connection);
+                command.Connection.Open();
 
-            return new CreatedResult($"/api/addtodoitem", output);
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            var json = $"\"itemId\": = \"{reader.GetInt32(3)}\"," +
+                                       $"\"count\": = \"{reader.GetInt32(5)}\";";
+
+                            var jsonString = "{" + json + "}";
+                            message = String.Format(jsonString);
+                        }
+                    }
+
+                    return (ActionResult)new OkObjectResult(message);
+                }
+            }
         }
-    }
-
-    public class ToDoItem
-    {
-        public string Id { get; set; }
-        public int Priority { get; set; }
-        public string Description { get; set; }
     }
 }
