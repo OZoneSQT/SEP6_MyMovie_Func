@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "MyMovieGetListData": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7018",
+      "launchBrowser": false
+    }
+  }
+}
